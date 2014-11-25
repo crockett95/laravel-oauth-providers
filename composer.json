@@ -1,0 +1,24 @@
+{
+    "name": "crockett95/o-auth",
+    "description": "",
+    "authors": [
+        {
+            "name": "Steve Crockett",
+            "email": "crockett95@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*",
+        "lusitanian/oauth": "~0.3"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Crockett95\\OAuth\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
