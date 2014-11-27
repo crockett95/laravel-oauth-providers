@@ -12,6 +12,7 @@ namespace Crockett95\OAuth;
 
 use Illuminate\Support\ServiceProvider;
 use OAuth\ServiceFactory;
+use OAuth\Common\Storage\Session;
 
 /**
  * Class for Laravel Service Provider implementation
@@ -34,7 +35,7 @@ class OAuthServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('crockett95/o-auth');
+        $this->package('crockett95/o-auth', 'oauth');
     }
 
     /**
@@ -50,8 +51,14 @@ class OAuthServiceProvider extends ServiceProvider {
             return new ServiceFactory();
         });
 
+        // Bind the Storage creation if it doesn't exist
+        $this->app->bindIf('oauth.storage', function ()
+        {
+            return new Session();
+        });
+
         // Bind the OAuth class instance
-        $this->app->bind('oauth', function ($app)
+        $this->app->singleton('oauth', function ($app)
         {
             return new OAuth($app);
         });
@@ -64,7 +71,7 @@ class OAuthServiceProvider extends ServiceProvider {
      */
     public function provides()
     {
-        return array();
+        return array('oauth.serviceFactory', 'oauth.storage');
     }
 
 }
