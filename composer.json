@@ -1,6 +1,6 @@
 {
-    "name": "crockett95/o-auth",
-    "description": "",
+    "name": "crockett95/laravel-oauth-providers",
+    "description": "OAuth Providers for Laravel",
     "authors": [
         {
             "name": "Steve Crockett",
